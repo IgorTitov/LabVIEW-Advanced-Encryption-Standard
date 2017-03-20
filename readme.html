@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META NAME="GENERATOR" CONTENT="VFP Soft Documentation Toolkit from www.vfpsoft.com">
+<script>
+function Link(URL)
+{
+window.location = URL;
+}
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>AES LabVIEW Library 1.0 Readme</title>
+
+<style>
+/***************************************************/
+/* MINIMAL STYLES */
+/* The following section defines styles that every HTML Help project should
+need. */
+/* The default style of P is red to alert you that you need to apply a style
+class, such as Body. */
+P { margin-top:6.00pt; margin-bottom:6.00pt; font-family:Verdana; font-size:8pt;
+color: #FF0000; }
+BR { font-size:4.00pt; }
+/* Use H1 for all topic headings. */
+H1 { margin-top:3.00pt; margin-bottom:3.00pt; font-family:Verdana;
+font-size:12pt; font-weight:bold; }
+/* Use H2 for second-level headings. */
+H2 { margin-top:9.00pt; margin-bottom:3.00pt; font-family:Verdana;
+font-size:10pt; font-weight:bold; }
+/* Use H3 for third-level headings. */
+H3 { margin-top:6.00pt; margin-bottom:3.00pt; font-family:Verdana;
+font-size:8pt; font-weight:bold; }
+/* Use H4 for fourth-level headings. */
+H4 { margin-top:3.00pt; margin-bottom:3.00pt; font-family:Verdana;
+font-size:8pt; font-weight:bold; }
+/* H5 and H6 have the same definition as H4 because you should not need this
+level of heading in one topic. If you need to use H5 or H6, consider breaking up
+your topic into more than one topic. */
+H5 { margin-top:3.00pt; margin-bottom:3.00pt; font-family:Verdana;
+font-size:8pt; font-weight:bold; }
+H6 { margin-top:3.00pt; margin-bottom:3.00pt; font-family:Verdana;
+font-size:8pt; font-weight:bold; }
+/* Use the Body style class for normal paragraphs. */
+P.Body { margin-top:6.00pt; margin-bottom:6.00pt; font-family:Verdana;
+font-size:8pt; color:black; }
+/* Use the Anchor style class for graphic references on a line by themselves. */
+P.Anchor { margin-top:6.00pt; margin-bottom:6.00pt; font-family:Verdana;
+font-size:10pt; color:black; }
+/* Use the Indent style classes to indent a paragraph. If you need to indent
+text below a list item, use <br><br> to start the new paragraph within the same
+set of <li></li> tags. If you need to indent a list within another list, nest
+the indented list within the first list's set of <ol></ol> or <ul></ul> tags. */
+P.Indent1 { margin-left:12.00pt; margin-top:6.00pt; margin-bottom:3.00pt;
+font-family:Verdana; font-size:8pt; color:black; }
+P.Indent2 { margin-left:24.00pt; margin-top:6.00pt; margin-bottom:3.00pt;
+font-family:Verdana; font-size:8pt; color:black; }
+P.Indent3 { margin-left:36.00pt; margin-top:6.00pt; margin-bottom:3.00pt;
+font-family:Verdana; font-size:8pt; color:black; }
+/* Use the LI style for all list items. */
+LI { margin-top:3.00pt; margin-bottom:3.00pt; font-family:Verdana;
+font-size:8pt; color:black; }
+/* Use the OL style for numbered lists. You do not have to type the number for
+each list item in a numbered list. */
+OL { margin-left:18.00pt; margin-top:3.00pt; margin-bottom:3.00pt;
+text-indent:0pt; font-family:Verdana; font-size:8pt; color:black;
+list-style-type: decimal; }
+/* Use the EquationNum style class for numbered lists of equations. You do not
+have to type the number for each list item in a numbered list. */
+OL.EquationNum { margin-left:36.00pt; margin-top:3.00pt; margin-bottom:3.00pt;
+text-indent:0pt; font-family:Verdana; font-size:8pt; color:black;
+list-style-type: decimal; }
+/* Use the List-abc style class for lettered lists. You do not have to type the
+letter for each list item in a lettered list. */
+OL.List-abc { margin-left:18.00pt; margin-top:3.00pt; margin-bottom:3.00pt;
+text-indent:0pt; font-family:Verdana; font-size:8pt; color:black;
+list-style-type:lower-alpha; }
+/* Use the UL style for bulleted lists. You do not have to type the bullet for
+each list item in a bulleted list. */
+UL { margin-left:12.00pt; text-indent:0pt; margin-top:3.00pt;
+margin-bottom:3.00pt; font-family:Verdana; font-size:8pt; color:black;
+list-style-type: disc; }
+/* Use the List-Box style class for bulleted lists with boxes instead of
+bullets. You do not have to type the box for each list item in a box list. */
+UL.List-Box { margin-left:12.00pt; margin-top:3.00pt; margin-bottom:3.00pt;
+text-indent:0pt; font-family:Verdana; font-size:8pt; color:black;
+list-style-type: square; }
+/* Use the List-Diamond style class for bulleted lists with diamonds instead of
+bullets. You do not have to type the diamond for each list item in a diamond
+list. */
+UL.List-Diamond { margin-left:12.00pt; margin-top:3.00pt; margin-bottom:3.00pt;
+text-indent:0pt; font-family:Verdana; font-size:8pt; color:black;
+list-style-image:url(diamond.gif); }
+/* Use the List-Hyphen style class for bulleted lists with hyphens instead of
+bullets. You do not have to type the hyphen for each list item in a hyphen list.
+*/
+UL.List-Hyphen { margin-left:12.00pt; margin-top:3.00pt; margin-bottom:3.00pt;
+text-indent:0pt; font-family:Verdana; font-size:8pt; color:black;
+list-style-image:url(hyphen.gif); }
+/* Use the Borderless style class for tables that do not need borders, such as
+for 2-column or 3-column lists with no headings. */
+Table.Borderless { border:none; }
+/* Use the Bordered style class for tables that need borders. */
+Table.Bordered { border-width: 1pt; border-style: solid; border-color: black;
+border-collapse: collapse; }
+/* Use the Borderless-Wide style class for tables that do not need borders and
+that you want to stretch to fill the entire topic width. */
+Table.Borderless-Wide { border:none; width:100%; }
+/* Use the Bordered-Wide style class for tables that need borders and that you
+want to stretch to fill the entire topic width. */
+Table.Bordered-Wide { border-width: 1pt; border-style: solid; border-color:
+black; width:100%; border-collapse: collapse; }
+/* Use the TD style for table cells in Borderless or Borderless-Wide tables. */
+TD { font-family:Verdana; font-size:8pt; color:black; vertical-align:top;
+padding:3px; }
+/* Use the Bordered style class for table cells in Bordered or Bordered-Wide
+tables. */
+TD.Bordered { font-family:Verdana; font-size:8pt; color:black;
+vertical-align:top; border-width: 1pt; border-style: solid; border-color: black;
+}
+/* Use the Icon style class for table cells that contain note, caution, warning,
+or tip icons, or LabVIEW datatype terminals. */
+TD.Icon { width:40px; vertical-align:top; }
+/* Use the Table-cell-8pt style class for table cells in tables that contain a
+lot of information and need smaller text to fit it all on one screen to prevent
+a horizontal scroll bar from appearing. */
+TD.Table-cell-8pt { font-family:Verdana; font-size:7pt; color:black; }
+/* Use the TH style for table heading cells in Borderless or Borderless-Wide
+tables. */
+TH { font-family:Verdana; font-size:8pt; color:black; font-weight:bold;
+padding:3px; }
+/* Use the Bordered style class for table heading cells in Bordered or
+Bordered-Wide tables. */
+TH.Bordered { font-family:Verdana; font-size:8pt; color:black; font-weight:bold;
+border-width: 1pt; border-style: solid; border-color: black; }
+/* Use the Table-cell-8pt style class for table heading cells in tables that
+contain a lot of information and need smaller text to fit it all on one screen
+to prevent a horizontal scroll bar from appearing. */
+TH.Table-Head-8pt { font-family:Verdana; font-size:7pt; color:black;
+font-weight:bold; }
+/* Use the Left-Align style class for table heading cells that you want to left
+align instead of center align. */
+TH.Left-Align { font-family:Verdana; font-size:8pt; color:black;
+font-weight:bold; padding:3px; text-align:left; }
+/***************************************************/
+/* CHARACTER FORMATS */
+/* The following section defines character formats that every HTML Help project
+should need. */
+/* Use the Dark-Red format for warnings or cautions. */
+#Dark-Red { color: #800000 }
+/* Use the Monospace format for code or syntax examples. */
+#Monospace { font-family: Courier New; font-size: 8pt; }
+/* Use the Monospace-Bold format for messages and responses that the computer
+automatically prints to the screen. */
+#Monospace-Bold { font-family: Courier New; font-size: 8pt; font-weight: bold; }
+/* Use the Monospace-Italic format to denote text that is a placeholder for a
+word or value that the user must supply. */
+#Monospace-Italic { font-family: Courier New; font-size: 8pt; font-style:
+italic; }
+/* Use the Platform format to denote a specific platform. */
+#Platform { color: #0000FF; font-weight: bold; }
+/* Use the Symbol format for characters not in the Verdana character set. Use
+this format sparingly. When possible, you should use the correct ASCII code for
+the symbol or use a graphic to recreate the symbol. */
+#Symbol { font-family: Symbol; font-size: 8pt; }
+/* CHARACTER FORMATS Updated to conform with the CSE HTML Validator Pro */
+/* The following section defines character formats that every HTML Help project
+should need. */
+/* Use the Dark-Red format for warnings or cautions. */
+.Dark-Red { color: #800000 }
+/* Use the Monospace format for code or syntax examples. */
+.Monospace { font-family: Courier New; font-size: 8pt; }
+/* Use the Monospace-Bold format for messages and responses that the computer
+automatically prints to the screen. */
+.Monospace-Bold { font-family: Courier New; font-size: 8pt; font-weight: bold; }
+/* Use the Monospace-Italic format to denote text that is a placeholder for a
+word or value that the user must supply. */
+.Monospace-Italic { font-family: Courier New; font-size: 8pt; font-style:
+italic; }
+/* Use the Platform format to denote a specific platform. */
+.Platform { color: #0000FF; font-weight: bold; }
+/* Use the Symbol format for characters not in the Verdana character set. Use
+this format sparingly. When possible, you should use the correct ASCII code for
+the symbol or use a graphic to recreate the symbol. */
+.Symbol { font-family: Symbol; font-size: 8pt; }
+/* Use the Red-text format to call attention to text that needs information
+added or edited by techcomm */
+.Red-text {color: #FF0000;}
+/* Use the Green-Underline format for the green defintion in the conventions
+topic */
+.Green-Underline {color: #007700; text-decoration : underline;}
+/* Use the glossButton format for the glossary buttons used in the glossary
+topic */
+.glossButton { font-family:Verdana, sans-serif; font-size:12px; color:black; }
+/* Use for text sections and hyphenated words that should not break at line
+wraps */
+span.nobreak{white-space:nowrap}
+/* The following styles define the color of links. */
+a:link { color: #007700 }
+a:hover { color: #FF0000 }
+a:active { color: #FF0000 }
+a:visited { color: #7F007F }
+/***************************************************/
+/* ACTIVITY STYLES */
+/* The following section defines styles that only tutorial-style HTML Help
+projects should need. */
+/* Use the Activity-Objective style class for the objective at the beginning of
+an activity topic. */
+H3.Activity-Objective { color: #800000; }
+/***************************************************/
+/* CODE STYLES */
+/* The following section defines styles that you need to format entire sections
+of code or syntax examples. If you have just a few words you need to format as a
+code or syntax example, use the Monospace character format. */
+P.Code { margin-top:3.00pt; margin-bottom:0.00pt; font-family:Courier New;
+font-size:8pt; color:black; }
+P.Code1 { margin-left:12.00pt; margin-top:3.00pt; margin-bottom:0.00pt;
+font-family:Courier New; font-size:8pt; color:black; }
+P.Code2 { margin-left:24.00pt; margin-top:3.00pt; margin-bottom:0.00pt;
+font-family:Courier New; font-size:8pt; color:black; }
+P.Code3 { margin-left:36.00pt; margin-top:3.00pt; margin-bottom:0.00pt;
+font-family:Courier New; font-size:8pt; color:black; }
+/***************************************************/
+/* FUNCTION STYLES */
+/* The following section defines styles that you might need to format function
+reference help. */
+P.F-VI-Code4 { margin-left:48.00pt; margin-top:3.00pt; margin-bottom:0.00pt;
+font-family:Courier New; font-size:8pt; color:black; }
+P.F-VI-Code5 { margin-left:60.00pt; margin-top:3.00pt; margin-bottom:0.00pt;
+font-family:Courier New; font-size:8pt; color:black; }
+P.F-VI-Equation { margin-top:9.00pt; margin-bottom:9.00pt; font-family:Verdana;
+font-size:8pt; color:black; }
+OL.F-VI-EquationNum { margin-top:3.00pt; margin-bottom:3.00pt; text-indent:0pt;
+font-family:Verdana; font-size:8pt; color:black; list-style-type: decimal; }
+CITE.expandspot { font-style : normal;
+color : green;
+cursor: hand;}
+.mvd-CITE-expandspot { font-style : normal;
+color : green;
+cursor: hand;}
+DFN.collapsed { font-style : italic;
+font-weight : normal;
+display : 'none';
+color : red;}
+.mvd-DFN-collapsed { font-style : italic;
+font-weight : normal;
+display : 'none';
+color : red;}
+DFN.expanded { font-style : italic;
+font-weight : normal;
+color : red;}
+.mvd-DFN-expanded { font-style : italic;
+font-weight : normal;
+color : red;}
+EM.dropspot { cursor : hand;
+color : green;}
+.mvd-EM-dropspot { cursor : hand;
+color : green;}
+</style>
+<noscript>
+	<p class="Body"><strong>JavaScript (active content) is disabled. For all content to be accessible, you must enable JavaScripts in your browser.</strong></p>
+</noscript>
+
+<body style="background-color: rgb(255, 255, 255);"><h1>Advanced Encryption Standard (AES) LabVIEW Library 1.0 Readme</h1>
+<p class="Body">September 2012, April 2017</p>
+<p class="Body">Thank you for using AES LabVIEW Library, version 1.0. The readme contains the following main sections:</p>
+<ul><li><a href="#Installation">Installation</a></li>
+<li><a href="#sysRequire">System requirements</a></li>
+<li><a href="#OS">Software support</a></li>
+<li><a href="#Issues">Known Issues</a></li>
+<li><a href="#Developer">Developer(s)</a></li><li><a href="#Support">Contact Support</a></li>
+<li><a href="#Copyright">Copyright</a></li>
+<li><a href="#Disclaimer">Disclaimer</a></li>
+</ul>
+<h2><a name="Installation"></a>Installation</h2>
+<p class="Body">This section documents installation
+instructions for AES LabVIEW Library.</p>
+<ol><li>Download VIPM package of AES Encryption Library</li>
+<li>Open it with VI Package Manager (available for free at www.jki.net/vipm) and follow instructions</li>
+<li>Restart LabVIEW</li>
+</ol>
+<h2><a name="sysRequire"></a></h2>
+<h2>System
+Requirements</h2>
+<table class="Bordered">
+<tbody>
+<tr>
+<th class="Bordered">System Use</th>
+<th class="Bordered">RAM</th>
+<th>Processor</th>
+</tr><tr><td class="Bordered">
+Development
+</td>
+<td class="Bordered">
+1 GB
+</td>
+<td class="Bordered">
+1 GHz or better
+</td>
+<tr><td class="Bordered">
+Deployment
+</td>
+<td class="Bordered">
+256 MB
+</td>
+<td class="Bordered">
+600 MHz or better
+</td>
+</tbody>
+</table>
+<a name="OS"></a>
+<h2>Software Support in AES LabVIEW Library</h2>
+<h3>Operating System Support</h3>
+<p class="Body">The following operating systems are supported in AES LabVIEW Library 1.0.0: </p>
+<ul>
+<li>Windows</li>
+<li>Mac OS</li>
+<li>Linux</li>
+
+</ul>
+<p class="Body"><strong>Note</strong>&nbsp;&nbsp;This library was written in pure LabVIEW, therefore it's compatible with any operating system that LabVIEW itself can run on.</p>
+<p>
+<span class="Dark-Red"><strong>Caution</strong>&nbsp;&nbsp;AES 1.0.0 uses floating point operations and for this reason currently can't be used on FPGA targets. For FPGA you can use AES library supplied by National Instruments.</span></p>
+<p class="Body"></p>
+<h3>NI Application Software Support </h3>
+<p class="Body">The following table lists the NI application software versions supported by AES LabVIEW Library 1.0.0.</p>
+<div class="DNL">
+<table class="Bordered">
+<tbody>
+<tr>
+<th class="Bordered">NI Application Software</th>
+<th class="Bordered">Supported Versions</th>
+</tr>
+<tr align="center">
+<td class="Bordered" align="left">LabVIEW</td>
+<td class="Bordered">2012 and later (but it can be successfully compiled into 8.5+ if necessary)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<a name="Issues"></a>
+<h2>Known Issues</h2>
+<p class="Body">The following table lists bugs and known issues in AES LabVIEW library.</p>
+<div class="DNL">
+<table class="Bordered">
+<tbody>
+<tr>
+<th class="Bordered">Issue Number</th>
+<th class="Bordered">Description</th>
+</tr>
+<tr align="center">
+<td class="Bordered" align="left">1</td>
+<td class="Bordered">If input string is 38, 39, 86, 87, 134 or 135 bytes long, the output is incorrect.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<a name="Developer"></a>
+<h2>Developer(s) of AES LabVIEW Library</h2>
+<p class="Body">This library was initially developed in 2011 by Igor Titov (igor.ev.titov<at>gmail.com), Certified LabVIEW Architect</p>
+<p class="Body">This library was released into public domain under MIT license in 2017 by Igor Titov (igor.ev.titov<at>gmail.com), Certified LabVIEW Architect</p>
+<a name="Support"></a>
+<h2>Contact Support</h2>
+<p class="Body">You can contact us by one of the following:</p>
+<p class="Body"><span style="font-weight: bold;">Telephone:&nbsp;</span>N/A</p>
+<p class="Body"><span style="font-weight: bold;">Email:&nbsp;</span>igor.ev.titov<at>gmail<dot>com (expected responce time is one business week)</p>
+<p class="Body"><span style="font-weight: bold;">Links:&nbsp;</span>https://github.com/</p>
+<hr><a name="Copyright"></a>
+<h3><strong>Copyright</strong></h3>
+<p class="Body">Copyright (c) 2017 Igor Titov (Certified LabVIEW Architect)</p>
+<a name="Disclaimer"></a>
+<h3><strong>Disclaimer</strong></h3>
+<p class="Body">This software is licensed under MIT license:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p></body></html>
