@@ -1,3 +1,5 @@
+![alt tag](https://github.com/IgorTitov/LabVIEW-Advanced-Encryption-Standard/blob/master/Examples/AES_LabVIEW_image.png)
+
 # Advanced Encryption Standard (AES) - Native LabVIEW Library
 
 Official site: https://vfpsoft.com  
